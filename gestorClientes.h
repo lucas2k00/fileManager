@@ -8,7 +8,8 @@ typedef enum{
 	FileManager_Destructor,
 	FileManager_Constructor_parametros,
 	ListFiles_F,
-	
+	ReadFiles_F,
+    WriteFiles_F,
 	OK_MSG
 
 } msgTypes;
@@ -18,10 +19,10 @@ class GestorClientes{
 	public:
 	//Usado por el cliente
 	//Mapa para almacenar y buscar datos de conexión
-		static inline map<Persona*,connection_t > connections;
+		static inline map<FileManager*,connection_t > connections;
 	//Usado por el servidor
 	//Mapa para almacenar y buscar personas reservadas por clientes
-		static inline map<int,Persona > clients; 
+		static inline map<int,FileManager > clients; 
 	//Método usado por el servidor para gestionar peticiones de invocación
 	//de métodos recibido de programas tipo cliente.
 	//Cada nuevo cliente conectado al sistema lleva asociado un "clientId" que 
