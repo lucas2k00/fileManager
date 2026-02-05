@@ -1,14 +1,6 @@
 #include "filemanager.h"
+#include "gestorClientes.h"
 
-typedef enum{
-	FileManager_Constructor,
-	FileManager_Destructor,
-	FileManager_Constructor_parametros,
-	ListFiles_F,
-	
-	OK_MSG
-
-} msgTypes;
 	
 FileManager(){
 	vector<unsigned char> buffer;
@@ -27,12 +19,12 @@ FileManager(){
 	connections[this]=conn.serverId;
 }
 
-~FileManager(){
+~FileManager(){ //ESTA TERMINADO??????????
 	closeConnection(conn.serverId);
-
 }
 
-FileManager(string path);
+FileManager(string path); //TO DOOO
+
 vector<string> listFiles(){
 	
 	vector<unsigned char> buffer;
@@ -59,5 +51,5 @@ vector<string> listFiles(){
 	return res;
 }
 
-void readFile(string fileName, vector<unsigned char> &data);
-void writeFile(string fileName, vector<unsigned char> &data);
+void readFile(string fileName, vector<unsigned char> &data); //TO DOOO
+void writeFile(string fileName, vector<unsigned char> &data); //TO DOOO

@@ -1,3 +1,7 @@
+#include "gestorClientes.h"
+#include <sstream>   
+
+
 void GestorClientes::atiendeCliente(int clientId){
 	bool salir=false;
 	vector<unsigned char> buffer;//Buffer de datos recibidos desde le cliente
@@ -8,7 +12,8 @@ void GestorClientes::atiendeCliente(int clientId){
 		//dependiendo de tipo de mensaje ejecutar funcion
 		auto tipo=unpack<MSGTypes>(buffer);
 		switch(tipo){ //crear un caso para cada tipo de mensaje
-			case FileManager_Constructor:{
+			case FileManager_Constructor:
+			{
 				fileManager fm; //creada instancia de fileManager
 				//almacenarla para futuras llamadas a metodos
 				clients[clientId]=fm;
@@ -17,7 +22,8 @@ void GestorClientes::atiendeCliente(int clientId){
 				pack(buffer,OK_MSG);//almacenar mensaje
 				sendMSG(clientId,buffer);	
 			}break;
-			case ListFiles_F:{
+			case ListFiles_F:
+			{
 				//recuperar instancia de FM
 					//desempaquetar params
 				vector<string> res=clients[clientId].listFiles();
@@ -26,7 +32,8 @@ void GestorClientes::atiendeCliente(int clientId){
 					//por cada string
 					for(auto &s: res){
 						//empaquetar string
-						
+						pack(buffer, s.size());
+						packv(buffer, s.data());
 					}
 					
 					//enviar
